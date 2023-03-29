@@ -1,0 +1,31 @@
+{{ define "main" }}
+<main class="main" role="main">
+  <article class="post">
+    <div class="content post__content clearfix">
+      <!--注意，必须指定了类型才能被检测到-->
+      {{ range (.Site.RegularPages.GroupByDate "2006") }}
+        {{ $posts := (where .Pages "Section" $.Params.section) }}
+        {{ $postCount := len $posts }}
+        {{- if (gt $postCount 0) }}
+          <h2>{{ .Key }}</h2>
+        {{- end }}
+        <ul class="archive-list">
+          {{ range $posts }}
+          <li>
+            {{ .PublishDate.Format "2006-01-02" }}
+            :
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </div>
+    {{- if .Params.tags }}
+    <footer class="post__footer">
+      {{ partial "post_tags.html" . }}
+    </footer>
+    {{- end }}
+  </article>
+</main>
+{{ end }}
+

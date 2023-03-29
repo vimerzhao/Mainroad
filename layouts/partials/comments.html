@@ -1,5 +1,9 @@
-{{ if and .Site.DisqusShortname (index .Params "comments" | default "true") (not .Site.IsServer) }}
-<section class="comments">
-	{{ template "_internal/disqus.html" . }}
-</section>
-{{ end }}
+{{- if .Param "comment" }}
+<script src="https://utteranc.es/client.js"
+  repo="{{ .Site.Params.Comment.repo }}"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+{{- end }}

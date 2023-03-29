@@ -11,10 +11,14 @@
 			{{- end }}
 		</header>
 		{{ partial "post_thumbnail.html" (dict "class" "post" "page" .) }}
+    <span style="color:grey; font-size: 0.9em">本文约 {{ .FuzzyWordCount }} 字，阅读需 {{ .ReadingTime }} 分钟。</span>
+    <p/>
 		{{- partial "post_toc.html" . -}}
 		<div class="content post__content clearfix">
 			{{ .Content }}
 		</div>
+    <span id="wc" style="color:grey; font-size: 0.9em">总阅读量<span id="busuanzi_value_page_pv"></span>次。</span>
+    <p></p>
 		{{- if .Params.tags }}
 		<footer class="post__footer">
 			{{ partial "post_tags.html" . }}
@@ -22,7 +26,7 @@
 		{{- end }}
 	</article>
 </main>
-{{ partial "authorbox.html" . }}
+{{ partial "custom_authorbox.html" . }}
 {{ partial "pager.html" . }}
 {{ partial "comments.html" . }}
 {{ end }}
